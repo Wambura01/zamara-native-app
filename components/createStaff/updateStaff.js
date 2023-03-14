@@ -1,16 +1,17 @@
 import React, {useState} from 'react';
 import {View, Text, Modal, TextInput, Button} from 'react-native';
 
-const CreateStaffForm = ({visible, onClose, onCreate}) => {
+const UpdateStaffForm = ({visible, onClose, onUpdate, staff}) => {
   const [staffNo, setStaffNo] = useState('');
   const [staffName, setStaffName] = useState('');
   const [staffEmail, setStaffEmail] = useState('');
   const [department, setDepartment] = useState('');
   const [salary, setSalary] = useState('');
 
-  const handleCreate = () => {
+  const handleUpdate = () => {
     // create a new staff member object
     const newStaff = {
+      _id: staff._id,
       staffNo: staffNo,
       staffName: staffName,
       staffEmail: staffEmail,
@@ -18,8 +19,8 @@ const CreateStaffForm = ({visible, onClose, onCreate}) => {
       salary: salary,
     };
 
-    // call the onCreate prop to submit the new staff member to the API
-    onCreate(newStaff);
+    // call the onUpdate prop to submit the new staff member to the API
+    onUpdate(newStaff);
 
     // reset the form fields
     setStaffNo('');
@@ -36,34 +37,34 @@ const CreateStaffForm = ({visible, onClose, onCreate}) => {
     <Modal visible={visible} animationType="slide">
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text style={{fontSize: 20, marginBottom: 20}}>
-          Add New Staff Member
+          Update Staff Member
         </Text>
         <TextInput
-          placeholder="Staff Number"
+          placeholder={`${staff?.staffNo}`}
           value={staffNo}
           onChangeText={setStaffNo}
           style={{borderWidth: 1, padding: 10, marginBottom: 10, width: '80%'}}
         />
         <TextInput
-          placeholder="Staff Name"
+          placeholder={staff?.staffName}
           value={staffName}
           onChangeText={setStaffName}
           style={{borderWidth: 1, padding: 10, marginBottom: 10, width: '80%'}}
         />
         <TextInput
-          placeholder="Staff Email"
+          placeholder={staff?.staffEmail}
           value={staffEmail}
           onChangeText={setStaffEmail}
           style={{borderWidth: 1, padding: 10, marginBottom: 10, width: '80%'}}
         />
         <TextInput
-          placeholder="Department"
+          placeholder={staff?.department}
           value={department}
           onChangeText={setDepartment}
           style={{borderWidth: 1, padding: 10, marginBottom: 10, width: '80%'}}
         />
         <TextInput
-          placeholder="Salary"
+          placeholder={`${staff?.salary}`}
           value={salary}
           onChangeText={setSalary}
           style={{borderWidth: 1, padding: 10, marginBottom: 10, width: '80%'}}
@@ -75,11 +76,11 @@ const CreateStaffForm = ({visible, onClose, onCreate}) => {
             width: '80%',
           }}>
           <Button title="Cancel" onPress={onClose} />
-          <Button color="black" title="Create" onPress={handleCreate} />
+          <Button color="black" title="Update" onPress={handleUpdate} />
         </View>
       </View>
     </Modal>
   );
 };
 
-export default CreateStaffForm;
+export default UpdateStaffForm;
