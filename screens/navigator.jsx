@@ -7,6 +7,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import Continents from './continents';
 import Home from './home';
 import Staff from './staff';
+import Logout from './logout';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -71,6 +72,20 @@ function TabsNavigator({route}) {
           tabBarIcon: ({focused}) => (
             <Fontisto
               name="world-o"
+              color={focused ? 'black' : 'gray'}
+              size={26}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Logout"
+        component={Logout}
+        options={{
+          tabBarLabel: 'Logout',
+          tabBarIcon: ({focused}) => (
+            <MaterialCommunityIcons
+              name="logout"
               color={focused ? 'black' : 'gray'}
               size={26}
             />

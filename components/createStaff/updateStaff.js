@@ -11,7 +11,7 @@ const UpdateStaffForm = ({visible, onClose, onUpdate, staff}) => {
   const handleUpdate = () => {
     // create a new staff member object
     const newStaff = {
-      _id: staff._id,
+      id: staff._id,
       staffNo: staffNo,
       staffName: staffName,
       staffEmail: staffEmail,
